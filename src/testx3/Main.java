@@ -976,7 +976,7 @@ public class Main {
                 }
             }
 
-            System.out.println("(i = " + (i / 2 + 1) + "/" + ((totalEdges / 2) - 2) + ", j = " + (j / 2 + 1) + "/" + ((totalEdges / 2) - 1) + ", k = " + (k / 2 + 1) + "/" + ((totalEdges / 2)) + ") => " + ttWeight);
+            System.out.println(iter + ": (i = " + (i / 2 + 1) + "/" + ((totalEdges / 2) - 2) + ", j = " + (j / 2 + 1) + "/" + ((totalEdges / 2) - 1) + ", k = " + (k / 2 + 1) + "/" + ((totalEdges / 2)) + ") => " + ttWeight);
 
             iter--;
 
@@ -990,6 +990,8 @@ public class Main {
                         out.print(result[y] + "\n");
                     }
                     out.close();
+                    out = new PrintWriter("x3results.txt");
+                    indicesToFile(indicesMixed, out);
                     for (int index = 0; index < minimum.length; index++) {
                         System.out.println(result[index]);
                     }
