@@ -1,10 +1,10 @@
--1
--1
--1
--1
--1
--1
--1
--1
--1
--1
+304056
+305357
+305629
+305703
+308486
+ElenaFortune:SplitFire, HereticEnd:CircleLabour, Interworlds:SacredRelic => 304056
+AsteroidBelt:HereticEnd, RedLight:HomeLight, PriestRefuge:CardinalDomain => 305357
+BluishSnout:SpiresElusion, ElenaFortune:SplitFire, Unknown13:GrandExchange => 305629
+RingoMoon:ArgonPrime, TerranUnknown2:TerranUnknown1, PriestRefuge:SpringBelief => 305703
+AsteroidBelt:HereticEnd, SplitFire:BrennanTriumph, SpringBelief:UnholyDescent => 308486

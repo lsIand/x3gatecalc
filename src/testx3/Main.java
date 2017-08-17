@@ -884,18 +884,18 @@ public class Main {
             }
         }
 
-        try {
-            FileReader f = new FileReader("x3results.txt");
-            BufferedReader bf = new BufferedReader(f);
-            String aline;
-            while ((aline = bf.readLine()) != null) {
-                System.out.println(aline);
-            }
-            bf.close();
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
+//        try {
+//            FileReader f = new FileReader("x3results.txt");
+//            BufferedReader bf = new BufferedReader(f);
+//            String aline;
+//            while ((aline = bf.readLine()) != null) {
+//                System.out.println(aline);
+//            }
+//            bf.close();
+//        }
+//        catch (Exception e) {
+//            e.printStackTrace();
+//        }
 
         System.out.println("Total indices: " + indicesMixed.size());
 
@@ -928,7 +928,10 @@ public class Main {
             e.printStackTrace();
         }
 
-        for (Triple t : indicesMixed) {
+        while (!indicesMixed.isEmpty()) {
+
+            Triple t = indicesMixed.get(indicesMixed.size() - 1);
+
             edges = (ArrayList<Edge>) origEdges.clone();
 
             int i = t.i;
@@ -962,7 +965,17 @@ public class Main {
 
             Graph graph = new Graph(nodes, edges);
 
+            long time = System.currentTimeMillis();
             int ttWeight = getTotalWeight(graph);
+            time = (System.currentTimeMillis() - time)/1000;
+
+            String timeString = Long.toString(time);
+
+            if (timeString.length() > 5) {
+                timeString = timeString.substring(0, 5);
+            }
+
+            System.out.println("Time to process: " + timeString + " seconds.");
 
             for (int index = 0; index < minimum.length; index++) {
                 if (ttWeight < minimum[index]) {
@@ -977,6 +990,8 @@ public class Main {
             }
 
             System.out.println(iter + ": (i = " + (i / 2 + 1) + "/" + ((totalEdges / 2) - 2) + ", j = " + (j / 2 + 1) + "/" + ((totalEdges / 2) - 1) + ", k = " + (k / 2 + 1) + "/" + ((totalEdges / 2)) + ") => " + ttWeight);
+
+            indicesMixed.remove(indicesMixed.size() - 1);
 
             iter--;
 
@@ -999,7 +1014,27 @@ public class Main {
                 catch (Exception e) {
                     e.printStackTrace();
                 }
+                return;
             }
+        }
+
+        try {
+            PrintWriter out = new PrintWriter("x3end.txt");
+            for (int y = 0; y < 5; y++) {
+                out.print(minimum[y] + "\n");
+            }
+            for (int y = 0; y < 5; y++) {
+                out.print(result[y] + "\n");
+            }
+            out.close();
+            out = new PrintWriter("x3results.txt");
+            indicesToFile(indicesMixed, out);
+            for (int index = 0; index < minimum.length; index++) {
+                System.out.println(result[index]);
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
         }
 
         for (int index = 0; index < minimum.length; index++) {
